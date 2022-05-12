@@ -1,3 +1,5 @@
-FROM nginx:alpine
-COPY ping.conf /etc/nginx/conf.d/default.conf
-COPY dist   /usr/share/nginx/html
+FROM node:16-alpine as builder
+RUN mkdir /workspace
+WORKDIR /workspace
+ADD . .
+RUN yarn
